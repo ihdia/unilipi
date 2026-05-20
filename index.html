@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniLipi: A Unified Multi-Script OCR for Historical Indic Manuscripts</title>
+  <meta name="description" content="UniLipi is the first unified multi-script OCR model for handwritten Indic manuscripts, trained jointly across 13 scripts in a single framework." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Noto+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="container">
+      <span class="venue-tag">Submitted to ICDAR 2026</span>
+
+      <h1 class="title">UniLipi: A Unified Multi-Script OCR for Historical Indic Manuscripts</h1>
+      <p class="subtitle">A single OCR foundation model trained jointly across <b>13 Indic scripts</b>.</p>
+
+      <p class="authors">
+        <a href="https://www.linkedin.com/in/tathagata-ghosh-85728192/" target="_blank" rel="noopener">Tathagata Ghosh</a>,
+        <a href="https://www.linkedin.com/in/sai-madhusudan-gunda-45bab4223/" target="_blank" rel="noopener">Sai Madhusudan Gunda</a>,
+        <a href="https://www.linkedin.com/in/simran-sandral-9213a5374/" target="_blank" rel="noopener">Simran Singh Sandral</a>,
+        <a href="https://ravika.github.io" target="_blank" rel="noopener">Ravi Kiran Sarvadevabhatla</a>
+      </p>
+
+      <p class="affiliations">
+        International Institute of Information Technology, Hyderabad 
+      </p>
+
+      <p class="emails">
+        tathagata.ghosh@research.iiit.ac.in &nbsp;·&nbsp; sai.gunda@research.iiit.ac.in &nbsp;·&nbsp; ssandral@gitam.in &nbsp;·&nbsp; ravi.kiran@iiit.ac.in
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="coming-soon.html"><span class="icon">📄</span> Paper</a>
+        <a class="btn muted" href="coming-soon.html"><span class="icon">📊</span> Dataset</a>
+        <a class="btn muted" href="coming-soon.html"><span class="icon">💻</span> Code</a>
+        <a class="btn muted" href="coming-soon.html"><span class="icon">🧠</span> Checkpoints</a>
+      </div>
+
+      <!-- Affiliation logos -->
+      <div class="logo-strip" aria-label="Affiliations">
+        <a href="https://icdar2026.org/" target="_blank" rel="noopener" title="ICDAR 2026">
+          <img class="icdar" src="static/images/logos/icdar2026.png" alt="ICDAR 2026 logo" />
+        </a>
+        <span class="sep" aria-hidden="true"></span>
+        <a href="https://www.iiit.ac.in/" target="_blank" rel="noopener" title="IIIT Hyderabad">
+          <img class="iiith" src="static/images/logos/iiith.jpg" alt="IIIT Hyderabad logo" />
+        </a>
+      </div>
+
+      <!-- Key numbers -->
+      <div class="stats" aria-label="Key results">
+        <div class="stat s1"><span class="val">13</span><span class="lbl">Indic scripts</span></div>
+        <div class="stat s2"><span class="val">32.5M</span><span class="lbl">Synthetic lines</span></div>
+        <div class="stat s3"><span class="val">6.9%</span><span class="lbl">Overall CER</span></div>
+        <div class="stat s4"><span class="val">85M</span><span class="lbl">Parameters</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== ABSTRACT ===================== -->
+  <section id="abstract">
+    <div class="container">
+      <h2 class="section-title">Abstract</h2>
+      <p class="abstract">
+        Optical character recognition (OCR) for handwritten Indic manuscripts is essential for large-scale digitization
+        and computational access to manuscript heritage. However, existing approaches are typically developed for one
+        script at a time and require substantial script-specific customization. This limits scalability and practical
+        deployment across diverse collections. We present <b>UniLipi</b>, a unified multi-script OCR model for handwritten
+        Indic manuscripts trained jointly across <b>13 Indic scripts</b> within a single framework. UniLipi directly
+        handles realistic manuscript conditions, including extreme variation in line geometry, large variation in line
+        length, and partial interruptions caused by non-textual manuscript entities such as holes, stains, or pictorial
+        illustrations. To operate effectively under ultra low-resource conditions, the model leverages script-aware
+        synthetic manuscript data generation, substantially reducing reliance on large volumes of real annotated data.
+        Beyond historical manuscripts, we show that UniLipi serves as an effective foundational pretrained model — its
+        learned representations enable strong OCR performance for contemporary Indic handwriting and extend to several
+        non-Indic scripts including <b>Tibetan</b>, <b>Italian</b>, <b>Latin</b>, and <b>Chinese</b>. In addition to
+        transcription, UniLipi predicts <b>script identity</b> and <b>per-line native character counts</b>, supporting
+        practical manuscript cataloging workflows.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== MANUSCRIPT DIVERSITY ===================== -->
+  <section id="manuscripts" class="alt">
+    <div class="container">
+      <h2 class="section-title">Diversity of Indic Manuscripts</h2>
+      <p>
+        Indic manuscripts span centuries, regions, and writing substrates. UniLipi targets <b>13 scripts</b> drawn from
+        five regional traditions: <span class="region-nc">North/Central Indian</span>,
+        <span class="region-s">Southern Indian</span>,
+        <span class="region-h">Himalayan/Buddhist</span>,
+        <span class="region-w">Western Indian</span>, and
+        <span class="region-e">Eastern Indian</span>.
+      </p>
+
+      <figure>
+        <img src="static/images/real-data.jpg" alt="Diversity of manuscript styles across Indic script regions" />
+        <figcaption>
+          <b>Diversity of manuscript styles across Indic script regions.</b>
+          Examples of manuscript lines from multiple historical collections grouped by geographic and script traditions:
+          <span class="region-nc">North/Central Indian</span>,
+          <span class="region-s">Southern Indian</span>,
+          <span class="region-h">Himalayan/Buddhist</span>,
+          <span class="region-w">Western Indian</span>, and
+          <span class="region-e">Eastern Indian</span>.
+          The examples illustrate substantial diversity in writing substrates (palm leaf, paper), layout geometry,
+          stroke thickness, ink characteristics, and orthographic structure across scripts and regions.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== CONTRIBUTIONS ===================== -->
+  <section id="contributions">
+    <div class="container">
+      <h2 class="section-title">Contributions</h2>
+      <ul class="contribs">
+        <li>
+          <b>UniLipi</b> — the first unified foundational multi-script OCR model for handwritten Indic scripts, trained
+          jointly across <b>13 distinct Indic scripts</b> within a single framework.
+        </li>
+        <li>
+          A <b>script-aware synthetic manuscript generation</b> approach that reduces reliance on large volumes of real
+          annotated handwritten data.
+        </li>
+        <li>
+          An OCR system that, in addition to transcription, predicts <b>script identity</b> and <b>per-line glyph count</b>
+          as auxiliary supervision.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== METHOD ===================== -->
+  <section id="method" class="alt">
+    <div class="container">
+      <h2 class="section-title">Method</h2>
+      <p>
+        UniLipi is a unified multi-task OCR model. Given a manuscript line image, it jointly predicts a text sequence in
+        the unified <b>Roman <code>WX</code></b> representation, a <b>script identity label</b>, and a per-line
+        <b>glyph count</b>. The architecture is a hybrid CNN–Transformer with task-specific heads.
+      </p>
+
+      <figure>
+        <img src="static/images/model.jpg" alt="UniLipi architecture overview" />
+        <figcaption>
+          <b>UniLipi architecture overview.</b>
+          A CNN backbone extracts a sequence of <b>image tokens</b> from a padded line image. A learnable
+          <b>script token</b> and a <b>count token</b> are appended to the image-token sequence and encoded by a
+          Transformer with windowed self-attention. Image-token representations are decoded by a CTC-based text head
+          to produce a Roman <code>WX</code> transcription, while the latent task tokens feed dedicated heads for
+          script identification and glyph-count prediction. Training uses a joint OCR + script + count objective.
+        </figcaption>
+      </figure>
+
+      <h3 class="sub-title">Joint training objective</h3>
+      <p>
+        The model is trained end-to-end with a multi-task loss combining CTC for text recognition, cross-entropy for
+        script classification, and mean absolute error for glyph count:
+      </p>
+      <p style="text-align:center; font-family: 'Roboto Mono', monospace; font-size: 0.95rem; color: var(--ink);">
+        ℒ = ℒ<sub>OCR</sub> &nbsp;+&nbsp; λ<sub>script</sub> · ℒ<sub>script</sub> &nbsp;+&nbsp; λ<sub>count</sub> · ℒ<sub>count</sub>
+      </p>
+      <p>
+        Joint supervision encourages the encoder to learn richer representations that capture textual content, script
+        identity, and structural length information together — improving transcription accuracy across diverse
+        manuscripts.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SYNTHETIC PIPELINE ===================== -->
+  <section id="synthetic">
+    <div class="container">
+      <h2 class="section-title">Reference-Conditioned Synthetic Data</h2>
+      <p>
+        Real annotated manuscript lines are extremely scarce for many Indic scripts. We generate large-scale synthetic
+        training lines by lifting <b>appearance and geometric priors</b> from real reference manuscripts — yielding
+        roughly <b>2.5M synthetic lines per script</b> and <b>32.5M total</b> across the 13 scripts.
+      </p>
+
+      <figure>
+        <img src="static/images/synthetic.jpg" alt="Reference-conditioned synthetic line generation pipeline" />
+        <figcaption>
+          <b>Reference-conditioned synthetic line generation.</b>
+          <b>(1)</b> Sample a Roman <code>WX</code> text line and transliterate it into the target script.
+          <b>(2)</b> From a reference manuscript line, extract the writing mask, estimate font size and ink color,
+          then render glyphs sequentially within valid regions using script-specific fonts.
+          <b>(3)</b> Composite the rendered text onto a diffusion-inpainted clean background to preserve realistic
+          manuscript characteristics.
+          <b>(4)</b> Output the final synthetic line paired with its <code>WX</code> transcription, script label, and
+          glyph-count supervision.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS — PER-SCRIPT ===================== -->
+  <section id="results-perscript" class="alt">
+    <div class="container">
+      <h2 class="section-title">Results — Per-Script Performance</h2>
+      <p class="caption">
+        <b>Script-wise performance of UniLipi on 13 scripts, grouped by geographic region.</b>
+        We report CER (%) for OCR transcription, Mono CER (%) for a script-specific model trained only on that script
+        (monolingual setting), and Count-MAE for glyph count prediction.
+      </p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr>
+              <th>Script</th>
+              <th class="num">CER (%) ↓</th>
+              <th class="num">Mono CER (%) ↓</th>
+              <th class="num">Count-MAE ↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="region-row"><td colspan="4">North &amp; Central India</td></tr>
+            <tr><td>Devanagari</td><td class="num">8.4</td>  <td class="num">12.3</td><td class="num">1.2</td></tr>
+            <tr><td>Sharada</td>   <td class="num">5.2</td>  <td class="num">6.9</td> <td class="num">0.7</td></tr>
+            <tr><td>Modi</td>      <td class="num">18.6</td> <td class="num">17.4</td><td class="num">2.3</td></tr>
+
+            <tr class="region-row"><td colspan="4">Western India</td></tr>
+            <tr><td>Gurmukhi</td>  <td class="num">5.5</td>  <td class="num">6.5</td><td class="num">1.2</td></tr>
+            <tr><td>Jaini</td>     <td class="num">6.1</td>  <td class="num">7.9</td><td class="num">1.4</td></tr>
+
+            <tr class="region-row"><td colspan="4">Eastern India</td></tr>
+            <tr><td>Bengali</td>   <td class="num">18.3</td> <td class="num">17.1</td><td class="num">2.2</td></tr>
+            <tr><td>Odia</td>      <td class="num">16.3</td> <td class="num">15.1</td><td class="num">1.8</td></tr>
+
+            <tr class="region-row"><td colspan="4">Southern India</td></tr>
+            <tr><td>Grantha</td>   <td class="num">12.4</td> <td class="num">12.6</td><td class="num">1.7</td></tr>
+            <tr><td>Telugu</td>    <td class="num">12.3</td> <td class="num">12.9</td><td class="num">1.6</td></tr>
+            <tr><td>Malayalam</td> <td class="num">5.7</td>  <td class="num">7.4</td> <td class="num">0.7</td></tr>
+            <tr><td>Kannada</td>   <td class="num">5.5</td>  <td class="num">6.9</td> <td class="num">1.1</td></tr>
+
+            <tr class="region-row"><td colspan="4">Himalayan</td></tr>
+            <tr><td>Newar</td>     <td class="num">5.1</td>  <td class="num">7.1</td> <td class="num">0.6</td></tr>
+            <tr><td>Siddham</td>   <td class="num">18.1</td> <td class="num">17.4</td><td class="num">2.1</td></tr>
+
+            <tr class="overall ours"><td><b>Overall (weighted)</b></td><td class="num">6.9</td><td class="num">8.6</td><td class="num">1.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        UniLipi performs consistently across geographically and structurally diverse scripts. For most scripts, the
+        jointly trained model <b>outperforms</b> dedicated per-script models — demonstrating the benefit of unified
+        multi-script training.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS — BASELINES ===================== -->
+  <section id="results-baselines">
+    <div class="container">
+      <h2 class="section-title">Comparison with Baselines</h2>
+      <p class="caption">
+        <b>Baseline comparison on UniLipi-13.</b>
+        We evaluate UniLipi (ours) against OCR baselines using overall CER (%). We additionally report the lowest-CER
+        (Script-L / CER-L) and highest-CER (Script-H / CER-H) scripts to summarize script robustness.
+      </p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th class="num">Params (M)</th>
+              <th class="num">CER ↓</th>
+              <th>Script-L</th>
+              <th class="num">CER-L</th>
+              <th>Script-H</th>
+              <th class="num">CER-H</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Kraken</td>       <td class="num">4.1</td>  <td class="num">28.5</td><td>Sharada</td>   <td class="num">15.2</td><td>Bengali</td><td class="num">42.8</td></tr>
+            <tr><td>PyLaia</td>       <td class="num">5.3</td>  <td class="num">24.3</td><td>Newar</td>     <td class="num">13.4</td><td>Modi</td>   <td class="num">38.7</td></tr>
+            <tr><td>VLT</td>          <td class="num">7.0</td>  <td class="num">19.6</td><td>Malayalam</td> <td class="num">10.8</td><td>Bengali</td><td class="num">31.5</td></tr>
+            <tr><td>Tesseract</td>    <td class="num">8.0</td>  <td class="num">32.4</td><td>Malayalam</td> <td class="num">18.6</td><td>Modi</td>   <td class="num">47.3</td></tr>
+            <tr><td>HTR-VT</td>       <td class="num">53.5</td> <td class="num">14.8</td><td>Newar</td>     <td class="num">7.9</td> <td>Modi</td>   <td class="num">26.4</td></tr>
+            <tr><td>HTR-ConvText</td> <td class="num">65.9</td> <td class="num">12.9</td><td>Sharada</td>   <td class="num">6.8</td> <td>Siddham</td><td class="num">23.7</td></tr>
+            <tr><td>TrOCR</td>        <td class="num">385.0</td><td class="num">14.7</td><td>Newar</td>     <td class="num">9.9</td> <td>Bengali</td><td class="num">23.8</td></tr>
+            <tr class="ours">
+              <td><b>UniLipi (Ours)</b></td>
+              <td class="num"><b>85</b></td>
+              <td class="num"><b>6.9</b></td>
+              <td><b>Newar</b></td>
+              <td class="num"><b>5.1</b></td>
+              <td><b>Modi</b></td>
+              <td class="num"><b>18.6</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        UniLipi achieves <b>6.9% CER</b> overall, significantly outperforming LSTM-based engines (Tesseract 32.4%,
+        Kraken 28.5%) and transformer-based HTR models (TrOCR 14.7%, HTR-ConvText 12.9%) — while remaining compact
+        at <b>85M parameters</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== QUALITATIVE RESULTS ===================== -->
+  <section id="qualitative" class="alt">
+    <div class="container">
+      <h2 class="section-title">Qualitative Results</h2>
+      <figure>
+        <img src="static/images/results.jpg" alt="Qualitative OCR results across regions" />
+        <figcaption>
+          <b>Qualitative results of UniLipi</b> on a representative script for each region.
+          <span style="color:#d33;">Red marks deletions</span>;
+          <span style="color:#08a;">blue marks substitutions or additions</span>.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== TRANSFERABILITY ===================== -->
+  <section id="transfer">
+    <div class="container">
+      <h2 class="section-title">Transferability Beyond Indic Scripts</h2>
+      <p>
+        UniLipi serves as an effective <b>pretrained initializer</b> beyond the 13 in-domain scripts. After fine-tuning
+        on out-of-domain benchmarks, UniLipi attains strong performance across English, French, Italian, German, Tibetan,
+        Chinese, Arabic, and Khmer — suggesting the synthetic pretraining learns reusable stroke- and sequence-level
+        representations rather than script-specific templates.
+      </p>
+
+      <p class="caption"><b>(a) Out-of-domain evaluation</b> (fine-tuning only).</p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr><th>Benchmark</th><th>Language</th><th class="num">CER ↓</th><th class="num">WER ↓</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Chi-Bench</td>           <td>Chinese</td>    <td class="num">0.4</td>  <td class="num">2.1</td></tr>
+            <tr><td>Tibetan Collections</td> <td>Tibetan</td>    <td class="num">1.3</td>  <td class="num">2.9</td></tr>
+            <tr><td>IAM</td>                 <td>English</td>    <td class="num">6.9</td>  <td class="num">24.5</td></tr>
+            <tr><td>RIMES</td>               <td>French</td>     <td class="num">7.2</td>  <td class="num">28.1</td></tr>
+            <tr><td>LAM</td>                 <td>Italian</td>    <td class="num">8.1</td>  <td class="num">27.1</td></tr>
+            <tr><td>READ</td>                <td>German</td>     <td class="num">8.6</td>  <td class="num">26.4</td></tr>
+            <tr><td>PhD-Indic</td>           <td>Modern Indic</td><td class="num">9.5</td>  <td class="num">33.2</td></tr>
+            <tr><td>Muharaf</td>             <td>Arabic</td>     <td class="num">10.5</td> <td class="num">35.1</td></tr>
+            <tr><td>SleukRith</td>           <td>Khmer</td>      <td class="num">15.3</td> <td class="num">44.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="caption">
+        <b>(b) Unseen scripts in pretraining.</b>
+        UniLipi-10 is pretrained on 10 scripts (excluding Sharada, Jaini, Grantha) and then fine-tuned on these unseen
+        scripts; UniLipi-13 is pretrained on all 13.
+      </p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr><th>Initialization</th><th class="num">Sharada</th><th class="num">Jaini</th><th class="num">Grantha</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>UniLipi-10</td><td class="num">5.5</td><td class="num">6.1</td><td class="num">12.6</td></tr>
+            <tr class="ours"><td><b>UniLipi-13</b></td><td class="num"><b>5.2</b></td><td class="num"><b>6.1</b></td><td class="num"><b>12.4</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABLATIONS ===================== -->
+  <section id="ablations" class="alt">
+    <div class="container">
+      <h2 class="section-title">Ablation Study</h2>
+      <p class="caption">
+        <b>Ablation study of UniLipi.</b> Each row modifies a single component while keeping all others identical;
+        the final configuration is highlighted.
+      </p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr>
+              <th>Modified component</th>
+              <th>Default</th>
+              <th class="num">CER ↓</th>
+              <th class="num">Count-MAE ↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>IAST as vocab</td>              <td>Roman WX</td>        <td class="num">11.0</td><td class="num">1.7</td></tr>
+            <tr><td>Dedicated vocab per script</td> <td>Roman WX</td>        <td class="num">14.1</td><td class="num">1.9</td></tr>
+            <tr><td>No script token</td>            <td>Auxiliary tokens</td><td class="num">7.1</td> <td class="num">1.3</td></tr>
+            <tr><td>No count token</td>             <td>Auxiliary tokens</td><td class="num">9.3</td> <td class="num">—</td></tr>
+            <tr><td>No script &amp; count token</td><td>Auxiliary tokens</td><td class="num">9.7</td> <td class="num">—</td></tr>
+            <tr><td>Encoder with 4 layers</td>      <td>6 layers</td>        <td class="num">9.3</td> <td class="num">1.5</td></tr>
+            <tr><td>Encoder with 8 layers</td>      <td>6 layers</td>        <td class="num">8.1</td> <td class="num">1.3</td></tr>
+            <tr><td>ℒ<sub>OCR</sub> as Cross-Entropy</td><td>CTC loss</td>   <td class="num">8.3</td> <td class="num">1.4</td></tr>
+            <tr class="ours"><td><b>UniLipi (Final)</b></td><td><b>Default design</b></td><td class="num"><b>6.9</b></td><td class="num"><b>1.1</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HEATMAP ===================== -->
+  <section id="heatmap">
+    <div class="container">
+      <h2 class="section-title">Count-Token Attention Heatmap</h2>
+      <figure>
+        <img src="static/images/heatmap.jpg" alt="Count-token attention heatmap" />
+        <figcaption>
+          Attention structure induced from the <b>count token</b> in UniLipi. The heatmap illustrates the model's
+          ability to localize glyph-level structure, which serves both as auxiliary supervision and as a lightweight
+          quality-control cue at inference time.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== BIBTEX ===================== -->
+  <!-- <section id="bibtex" class="alt">
+    <div class="container">
+      <h2 class="section-title">BibTeX</h2>
+      <pre class="bibtex">@inproceedings{ghosh2026unilipi,
+  title     = {UniLipi: A Unified Multi-Script OCR for Historical Indic Manuscripts},
+  author    = {Ghosh, Tathagata and Gunda, Sai Madhusudan and
+               Sandral, Simran Singh and Sarvadevabhatla, Ravi Kiran},
+  booktitle = {Under Review},
+  year      = {2026},
+  institution = {International Institute of Information Technology, Hyderabad}
+}</pre>
+    </div>
+  </section> -->
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p>
+      Website built for the UniLipi project &nbsp;·&nbsp; International Institute of Information Technology, Hyderabad.
+    </p>
+    <p>
+      Page design inspired by the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>
+      under a Creative Commons license.
+    </p>
+  </footer>
+
+</body>
+</html>

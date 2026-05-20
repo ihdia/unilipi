@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon · UniLipi</title>
+  <meta name="description" content="This UniLipi resource is being prepared for release. Please get in touch for early access." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Noto+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="static/css/style.css" />
+
+  <style>
+    .coming-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      background: var(--bg-soft);
+    }
+    .coming-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 48px 40px;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+    }
+    .coming-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .coming-title {
+      font-family: "Castoro", Georgia, serif;
+      font-size: 2rem;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    .coming-sub {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0 0 28px;
+    }
+    .contact-box {
+      background: var(--bg-soft);
+      border: 1px dashed var(--rule);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin: 0 0 28px;
+    }
+    .contact-box .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .contact-box a {
+      font-family: "Roboto Mono", monospace;
+      font-size: 1.0rem;
+      color: var(--ink);
+      font-weight: 500;
+      word-break: break-all;
+    }
+    .contact-box a:hover { color: var(--accent); }
+
+    .back-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="coming-wrap">
+    <div class="coming-card">
+      <span class="coming-eyebrow">Coming Soon</span>
+      <h1 class="coming-title">This resource is on its way.</h1>
+      <p class="coming-sub">
+        We're preparing this artifact for public release. In the meantime, please reach out
+        directly for early access or any questions about UniLipi.
+      </p>
+
+      <div class="contact-box">
+        <p class="label">Contact</p>
+        <a href="mailto:sai.gunda@research.iiit.ac.in?subject=UniLipi%20—%20resource%20request">
+          sai.gunda@research.iiit.ac.in
+        </a>
+      </div>
+
+      <div class="back-row">
+        <a class="btn" href="index.html"><span class="icon">←</span> Back to project page</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
