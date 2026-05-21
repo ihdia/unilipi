@@ -158,9 +158,9 @@ a:hover { text-decoration: underline; }
   width: auto;
   object-fit: contain;
 }
-.logo-strip img.icdar  { max-height: 220px; }
-.logo-strip img.iiith  { max-height: 190px; }
-.logo-strip img.lekhya { max-height: 210px; }
+.logo-strip img.icdar  { max-height: 110px; }
+.logo-strip img.iiith  { max-height: 95px; }
+.logo-strip img.lekhya { max-height: 100px; }
 
 .logo-strip .sep {
   width: 1px;
