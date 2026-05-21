@@ -53,6 +53,10 @@
         <a href="https://www.iiit.ac.in/" target="_blank" rel="noopener" title="IIIT Hyderabad">
           <img class="iiith" src="static/images/logos/iiith.jpg" alt="IIIT Hyderabad logo" />
         </a>
+        <span class="sep" aria-hidden="true"></span>
+        <a href="https://canvas.iiit.ac.in/lekhyafestage/" target="_blank" rel="noopener" title="Lekhya AI">
+          <img class="lekhya" src="static/images/logos/lekhya.png" alt="Lekhya AI logo" />
+        </a>
       </div>
 
       <!-- Key numbers -->
@@ -203,7 +207,44 @@
     </div>
   </section>
 
-  <!-- ===================== RESULTS — PER-SCRIPT ===================== -->
+  <!-- ===================== RESULTS — OVERALL ===================== -->
+  <section id="results-overall" class="alt">
+    <div class="container">
+      <h2 class="section-title">Results — Overall Scores</h2>
+      <p class="caption">
+        <b>Overall (weighted) performance of UniLipi across all 13 Indic scripts.</b>
+        CER (%) for OCR transcription, Mono CER (%) for script-specific monolingual models, and Count-MAE for glyph
+        count prediction.
+      </p>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th class="num">CER (%) ↓</th>
+              <th class="num">Mono CER (%) ↓</th>
+              <th class="num">Count-MAE ↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="overall ours">
+              <td><b>UniLipi (Overall, weighted)</b></td>
+              <td class="num"><b>6.9</b></td>
+              <td class="num"><b>8.6</b></td>
+              <td class="num"><b>1.1</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Across the 13 scripts, UniLipi attains an overall <b>6.9% CER</b>, outperforming dedicated per-script
+        (monolingual) models at <b>8.6% CER</b> — demonstrating the benefit of unified multi-script training.
+      </p>
+    </div>
+  </section>
+
+  <!--
+  ===================== RESULTS — PER-SCRIPT (commented out) =====================
   <section id="results-perscript" class="alt">
     <div class="container">
       <h2 class="section-title">Results — Per-Script Performance</h2>
@@ -217,9 +258,9 @@
           <thead>
             <tr>
               <th>Script</th>
-              <th class="num">CER (%) ↓</th>
-              <th class="num">Mono CER (%) ↓</th>
-              <th class="num">Count-MAE ↓</th>
+              <th class="num">CER (%) &darr;</th>
+              <th class="num">Mono CER (%) &darr;</th>
+              <th class="num">Count-MAE &darr;</th>
             </tr>
           </thead>
           <tbody>
@@ -227,38 +268,36 @@
             <tr><td>Devanagari</td><td class="num">8.4</td>  <td class="num">12.3</td><td class="num">1.2</td></tr>
             <tr><td>Sharada</td>   <td class="num">5.2</td>  <td class="num">6.9</td> <td class="num">0.7</td></tr>
             <tr><td>Modi</td>      <td class="num">18.6</td> <td class="num">17.4</td><td class="num">2.3</td></tr>
-
             <tr class="region-row"><td colspan="4">Western India</td></tr>
             <tr><td>Gurmukhi</td>  <td class="num">5.5</td>  <td class="num">6.5</td><td class="num">1.2</td></tr>
             <tr><td>Jaini</td>     <td class="num">6.1</td>  <td class="num">7.9</td><td class="num">1.4</td></tr>
-
             <tr class="region-row"><td colspan="4">Eastern India</td></tr>
             <tr><td>Bengali</td>   <td class="num">18.3</td> <td class="num">17.1</td><td class="num">2.2</td></tr>
             <tr><td>Odia</td>      <td class="num">16.3</td> <td class="num">15.1</td><td class="num">1.8</td></tr>
-
             <tr class="region-row"><td colspan="4">Southern India</td></tr>
             <tr><td>Grantha</td>   <td class="num">12.4</td> <td class="num">12.6</td><td class="num">1.7</td></tr>
             <tr><td>Telugu</td>    <td class="num">12.3</td> <td class="num">12.9</td><td class="num">1.6</td></tr>
             <tr><td>Malayalam</td> <td class="num">5.7</td>  <td class="num">7.4</td> <td class="num">0.7</td></tr>
             <tr><td>Kannada</td>   <td class="num">5.5</td>  <td class="num">6.9</td> <td class="num">1.1</td></tr>
-
             <tr class="region-row"><td colspan="4">Himalayan</td></tr>
             <tr><td>Newar</td>     <td class="num">5.1</td>  <td class="num">7.1</td> <td class="num">0.6</td></tr>
             <tr><td>Siddham</td>   <td class="num">18.1</td> <td class="num">17.4</td><td class="num">2.1</td></tr>
-
             <tr class="overall ours"><td><b>Overall (weighted)</b></td><td class="num">6.9</td><td class="num">8.6</td><td class="num">1.1</td></tr>
           </tbody>
         </table>
       </div>
       <p>
         UniLipi performs consistently across geographically and structurally diverse scripts. For most scripts, the
-        jointly trained model <b>outperforms</b> dedicated per-script models — demonstrating the benefit of unified
+        jointly trained model <b>outperforms</b> dedicated per-script models &mdash; demonstrating the benefit of unified
         multi-script training.
       </p>
     </div>
   </section>
+  -->
 
-  <!-- ===================== RESULTS — BASELINES ===================== -->
+
+  <!--
+  ===================== RESULTS — BASELINES (commented out) =====================
   <section id="results-baselines">
     <div class="container">
       <h2 class="section-title">Comparison with Baselines</h2>
@@ -273,7 +312,7 @@
             <tr>
               <th>Model</th>
               <th class="num">Params (M)</th>
-              <th class="num">CER ↓</th>
+              <th class="num">CER &darr;</th>
               <th>Script-L</th>
               <th class="num">CER-L</th>
               <th>Script-H</th>
@@ -302,11 +341,13 @@
       </div>
       <p>
         UniLipi achieves <b>6.9% CER</b> overall, significantly outperforming LSTM-based engines (Tesseract 32.4%,
-        Kraken 28.5%) and transformer-based HTR models (TrOCR 14.7%, HTR-ConvText 12.9%) — while remaining compact
+        Kraken 28.5%) and transformer-based HTR models (TrOCR 14.7%, HTR-ConvText 12.9%) &mdash; while remaining compact
         at <b>85M parameters</b>.
       </p>
     </div>
   </section>
+  -->
+
 
   <!-- ===================== QUALITATIVE RESULTS ===================== -->
   <section id="qualitative" class="alt">
@@ -323,14 +364,15 @@
     </div>
   </section>
 
-  <!-- ===================== TRANSFERABILITY ===================== -->
+  <!--
+  ===================== TRANSFERABILITY — BEYOND INDIC (commented out) =====================
   <section id="transfer">
     <div class="container">
       <h2 class="section-title">Transferability Beyond Indic Scripts</h2>
       <p>
         UniLipi serves as an effective <b>pretrained initializer</b> beyond the 13 in-domain scripts. After fine-tuning
         on out-of-domain benchmarks, UniLipi attains strong performance across English, French, Italian, German, Tibetan,
-        Chinese, Arabic, and Khmer — suggesting the synthetic pretraining learns reusable stroke- and sequence-level
+        Chinese, Arabic, and Khmer &mdash; suggesting the synthetic pretraining learns reusable stroke- and sequence-level
         representations rather than script-specific templates.
       </p>
 
@@ -338,7 +380,7 @@
       <div class="table-wrap">
         <table class="results">
           <thead>
-            <tr><th>Benchmark</th><th>Language</th><th class="num">CER ↓</th><th class="num">WER ↓</th></tr>
+            <tr><th>Benchmark</th><th>Language</th><th class="num">CER &darr;</th><th class="num">WER &darr;</th></tr>
           </thead>
           <tbody>
             <tr><td>Chi-Bench</td>           <td>Chinese</td>    <td class="num">0.4</td>  <td class="num">2.1</td></tr>
@@ -372,6 +414,8 @@
       </div>
     </div>
   </section>
+  -->
+
 
   <!-- ===================== ABLATIONS ===================== -->
   <section id="ablations" class="alt">

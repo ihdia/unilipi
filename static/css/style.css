@@ -135,15 +135,15 @@ a:hover { text-decoration: underline; }
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 26px 40px;
-  padding: 22px 18px;
-  margin: 28px auto 6px;
-  max-width: 760px;
-  background: rgba(255, 255, 255, 0.65);
+  gap: 32px 56px;
+  padding: 28px 26px;
+  margin: 32px auto 6px;
+  max-width: 880px;
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--rule);
-  border-radius: 14px;
+  border-radius: 16px;
   backdrop-filter: blur(6px);
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
 }
 .logo-strip a {
   display: inline-flex;
@@ -154,25 +154,25 @@ a:hover { text-decoration: underline; }
 .logo-strip a:hover { opacity: 1.0; transform: translateY(-1px); }
 .logo-strip img {
   display: block;
-  max-height: 60px;
+  max-height: 100px;
   width: auto;
   object-fit: contain;
 }
-.logo-strip img.icdar  { max-height: 64px; }
-.logo-strip img.iiith  { max-height: 56px; }
-.logo-strip img.cvit   { max-height: 50px; }
+.logo-strip img.icdar  { max-height: 110px; }
+.logo-strip img.iiith  { max-height: 95px; }
+.logo-strip img.lekhya { max-height: 100px; }
 
 .logo-strip .sep {
   width: 1px;
-  height: 38px;
+  height: 64px;
   background: var(--rule);
 }
 
 @media (max-width: 640px) {
   .logo-strip { gap: 18px 24px; padding: 16px 12px; }
-  .logo-strip img.icdar { max-height: 50px; }
-  .logo-strip img.iiith { max-height: 44px; }
-  .logo-strip img.cvit  { max-height: 40px; }
+  .logo-strip img.icdar  { max-height: 78px; }
+  .logo-strip img.iiith  { max-height: 68px; }
+  .logo-strip img.lekhya { max-height: 72px; }
   .logo-strip .sep { display: none; }
 }
 
